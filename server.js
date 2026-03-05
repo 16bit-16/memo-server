@@ -4,9 +4,15 @@ const mysql = require('mysql2');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
 app.use(express.json());
 app.use(express.static('public'));
+app.use(cors({
+  origin: [
+    'https://apah.site',
+    'https://www.apah.site'
+  ],
+  credentials: true
+}));
 
 const db = mysql.createConnection({
   host: process.env.DB_HOST,
